@@ -6,7 +6,7 @@
 /*   By: azane <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:17:03 by azane             #+#    #+#             */
-/*   Updated: 2021/11/13 20:39:42 by azane            ###   ########.fr       */
+/*   Updated: 2022/01/17 20:33:46 by azane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
+	t_list	*tmp;
+
 	while (*lst)
 	{
-		del((*lst)->content);
-		free(*lst);
-		(*lst) = (*lst)->next;
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
 	}
-	return ;
 }
